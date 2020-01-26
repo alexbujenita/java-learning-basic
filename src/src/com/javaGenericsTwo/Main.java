@@ -29,5 +29,7 @@ public class Main {
 //        bassano.matchResult(plot, 100, 20);
 //        plot.matchResult(baseballTeam, 30, 900);
         System.out.println(bassano.ranking());
+
+        System.out.println(mestre.compareTo(bassano));
     }
 }
