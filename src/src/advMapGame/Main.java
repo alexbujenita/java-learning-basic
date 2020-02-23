@@ -10,27 +10,34 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        locations.put(0, new Location(0, "Back to the real world"));
-        locations.put(1, new Location(0, "Standing at an end of a road"));
-        locations.put(2, new Location(0, "On top of a hill"));
-        locations.put(3, new Location(0, "Inside a building"));
-        locations.put(4, new Location(0, "In a valley"));
-        locations.put(5, new Location(0, "You are in a forest"));
+        Map<String, Integer> tempExit = new HashMap<String, Integer>();
+        locations.put(0, new Location(0, "Back to the real world", tempExit));
 
-        locations.get(1).addExit("W", 2);
-        locations.get(1).addExit("E", 3);
-        locations.get(1).addExit("S", 4);
-        locations.get(1).addExit("N", 5);
+        tempExit = new HashMap<String, Integer>();
+        tempExit.put("W", 2);
+        tempExit.put("E", 3);
+        tempExit.put("S", 4);
+        tempExit.put("N", 5);
+        locations.put(1, new Location(0, "Standing at an end of a road", tempExit));
 
-        locations.get(2).addExit("N", 5);
+        tempExit = new HashMap<String, Integer>();
+        tempExit.put("N", 5);
+        locations.put(2, new Location(0, "On top of a hill", tempExit));
 
-        locations.get(3).addExit("W", 1);
+        tempExit = new HashMap<String, Integer>();
+        tempExit.put("W", 1);
+        locations.put(3, new Location(0, "Inside a building", tempExit));
 
-        locations.get(4).addExit("N", 1);
-        locations.get(4).addExit("W", 2);
+        tempExit = new HashMap<String, Integer>();
+        tempExit.put("N", 1);
+        tempExit.put("W", 2);
+        locations.put(4, new Location(0, "In a valley", tempExit));
 
-        locations.get(5).addExit("S", 1);
-        locations.get(5).addExit("W", 2);
+
+        tempExit = new HashMap<String, Integer>();
+        tempExit.put("S", 1);
+        tempExit.put("W", 2);
+        locations.put(5, new Location(0, "You are in a forest", tempExit));
 
         Map<String, String> vocabulary = new HashMap<String, String>();
         vocabulary.put("QUIT", "Q");
@@ -56,7 +63,6 @@ public class Main {
 
             String direction = scanner.nextLine().toUpperCase();
             if(direction.length() > 1) {
-                System.out.println(direction.length());
                 String[] words = direction.split(" ");
                 for(String word: words) {
                     if(vocabulary.containsKey(word)) {
